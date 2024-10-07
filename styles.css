@@ -1,0 +1,115 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #000000;
+    /*background: radial-gradient(circle, #450876, #120048);
+    z-index: 4;
+    
+    animation: backgroundMove 15s ease infinite;*/
+    overflow: hidden;
+}
+/*@keyframes backgroundMove {
+    0% { background-position: 0 0; }
+    50% { background-position: 200px 200px; }
+    100% { background-position: 0 0; }
+}*/
+
+.cards-wrapper {
+    display: flex;
+    gap: 80px; /* Spacing between cards */
+    position: absolute;
+    z-index: 5;
+}
+
+.card-container {
+    perspective: 1000px; /* 3D effect */
+}
+
+.card {
+    width: 250px;
+    height: 400px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+}
+
+.card-container.flip .card {
+    transform: rotateY(180deg);
+}
+
+.front, .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(11, 70, 82);
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px  grey;
+    padding: 20px;
+    text-align: center;
+    transition: 0.5s;
+}
+.front{
+    background-image: url("Major-Arcana/major-arcana.png");
+    background-size:cover;
+    background-position: center;
+}
+.back {
+    transform: rotateY(180deg);
+    background-color: rgb(11, 70, 82);
+    background-size:cover;
+    background-position: center;
+}
+.front:hover{
+    box-shadow: 0px 0px 15px rgba(0,0,0,0.6);
+    transform: translateY(-50px) rotate(-5deg);
+}
+.back:hover{
+    box-shadow: 0px 0px 15px rgba(0,0,0,0.6);
+}
+
+@keyframes move-clouds{
+    from{background-position: 0% 0%;}
+    to{background-position: 200% 0%;}
+}
+
+@keyframes twinkle{
+    from{background-position: 0% 0%;}
+    to{background-position: -200% 200%;}
+}
+
+.stars, .twinkling, .clouds{
+    position: absolute;
+    top:0;bottom:0;left:0;right:0;
+    width: 100;height: 100;
+    display: block;
+}
+
+.stars{
+    background: transparent url("Background/stars.png") repeat top center;
+    z-index: 0;
+}
+
+.twinkling{
+    background: transparent url("Background/twinkling.png") repeat top center;
+    z-index: 1;
+    animation: twinkle 50s linear infinite;
+}
+
+.clouds{
+    background: transparent url("Background/clouds.png") repeat top center;
+    z-index: 2;
+    opacity: 40%;
+    animation: move-clouds 50s linear infinite;
+}
